@@ -2,6 +2,7 @@ package com.example.grp.weather_system.services;
 
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -16,8 +17,8 @@ import java.util.stream.Collectors;
 
 @GrpcService
 public class WeatherServiceImpl extends WeatherServiceGrpc.WeatherServiceImplBase {
-
-    private final String apiKey = "31e54a68050ef4f2d07202a432802fb6";
+    @Value("${weather.api.key}")
+    private String apiKey;
     private final RestTemplate restTemplate = new RestTemplate();
 
     private static final List<String> cidades = new ArrayList<>(Arrays.asList("São Paulo", "Rio de Janeiro", "Belo Horizonte"));
