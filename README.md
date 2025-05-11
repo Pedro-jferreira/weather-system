@@ -48,7 +48,7 @@ Você pode obter uma chave gratuita em: https://openweathermap.org/api
 Use o Maven para compilar o projeto e gerar os stubs a partir do `.proto`:
 
 ```bash
-./mvnw compile
+./mvn compile
 ```
 
 > Certifique-se de que o plugin de compilação do gRPC esteja configurado corretamente no `pom.xml`.
