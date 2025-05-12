@@ -18,9 +18,10 @@ Desenvolver uma aplicação **cliente-servidor** onde:
 
 - Java 17
 - Spring Boot
-- gRPC com `grpc-server-spring-boot-starter`
-- API OpenWeatherMap (Para consultar as Temperaturas)
 - Maven
+- gRPC com `grpc-server-spring-boot-starter`
+- gRPC-Web Proxy
+- API OpenWeatherMap (Para consultar as Temperaturas)
 
 ---
 
@@ -60,6 +61,53 @@ Use o Maven para compilar o projeto e gerar os stubs a partir do `.proto`:
 ```
 
 O servidor gRPC será iniciado na porta padrão `9090`.
+
+---
+## 🌐 Usando gRPC-Web Proxy (grpcwebproxy)
+
+Este projeto inclui o binário do [`grpcwebproxy`](https://github.com/improbable-eng/grpc-web/tree/master/go/grpcwebproxy) para **Windows 64 bits**, já na pasta `grpcwebproxy/`.
+
+### 📦 1. Arquivo incluso no repositório
+
+Você pode encontrar o executável do proxy para **Windows** na seguinte pasta:
+
+```
+weather-system/grpcwebproxy/grpcwebproxy-v0.15.0-win64.exe
+```
+
+### 💻 2. Usuários de Linux/macOS
+
+Se você utiliza Linux ou macOS, baixe o binário correspondente à sua plataforma aqui:
+
+👉 [Releases oficiais do grpcwebproxy](https://github.com/improbable-eng/grpc-web/releases)
+
+### ⚙️ 3. Execute o proxy
+
+Com o servidor gRPC (Spring Boot) rodando na porta `9090`, execute o proxy com:
+
+#### Windows (PowerShell ou CMD):
+
+```powershell
+src/main/grpcwebproxy/grpcwebproxy-v0.15.0-win64.exe ^
+  --backend_addr=localhost:9090 ^
+  --run_tls_server=false ^
+  --allow_all_origins ^
+  --server_http_debug_port=8081
+```
+
+#### Linux/macOS:
+
+```bash
+  src/main/grpcwebproxygrpcwebproxy-v0.15.0-linux-x86_64   --backend_addr=localhost:9090   --run_tls_server=false   --allow_all_origins   --server_http_debug_port=8081
+```
+
+> Se necessário, dê permissão de execução ao arquivo com `chmod +x`.
+
+### ✅ 4. Teste no navegador
+
+Abra: [http://localhost:8081](http://localhost:8081)
+
+Se aparecer "404 Not Found" e o terminal mostrar `Channel Connectivity change to READY`, o proxy está funcionando corretamente.
 
 ---
 
