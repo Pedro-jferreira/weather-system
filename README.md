@@ -18,9 +18,10 @@ Desenvolver uma aplicação **cliente-servidor** onde:
 
 - Java 17
 - Spring Boot
-- gRPC com `grpc-server-spring-boot-starter`
-- API OpenWeatherMap (Para consultar as Temperaturas)
 - Maven
+- gRPC com `grpc-server-spring-boot-starter`
+- gRPC-Web Proxy
+- API OpenWeatherMap (Para consultar as Temperaturas)
 
 ---
 
